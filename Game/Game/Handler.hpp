@@ -49,7 +49,17 @@ public:
      */
     Handler(std::string title, unsigned int x, unsigned int y, bool resizable = false, SDL_Color color = DEFAULT_COLOR);
 
-    /**Deconstructor
+    /**Copy Constructor
+     * Forbidden to use
+     */
+    Handler(const Handler &copy) = delete;
+
+    /**Copy Assignment Operator
+     * Forbidden to use
+     */
+    Handler& operator= (const Handler &copy) = delete;
+
+    /**Destructor
      * Destroys the renderer, window, and deletes the
      * object in the process
      */
@@ -64,7 +74,6 @@ public:
      * @param y - y cordinate of the point to check
      * @return - bool true if point is inside the window, false otherwise
      */
-     //TODO TESTME
     bool isInsideWindow(int x, int y);
 
     /**GetPointOfScreenPercentage

@@ -9,7 +9,7 @@
 #include <iostream>			//Used for basic character printing
 #define SDL_MAIN_HANDLED	//Used to avoid SDL taking control of main
 
-#include "Handler.hpp"		//Used to handle the game window
+#include "Handler.hpp"		//Used to handle the game window and renderer
 
 // Test Function Prototypes
 int graham_test_main(int argsc, char* argsv[]);
@@ -33,8 +33,26 @@ int main(int argsc, char * argsv[])
 
 int graham_test_main(int argsc, char* argsv[])
 {
-	Handler game = Handler("Game", DEFAULT_WINDOW_SIZE, DEFAULT_WINDOW_SIZE);
+	Handler game("Game", DEFAULT_WINDOW_SIZE, DEFAULT_WINDOW_SIZE);
+	SDL_Event* event = new SDL_Event{};
 
+	while (true)
+	{
+		while (SDL_PollEvent(event))
+		{
+			switch (event->type)
+			{
+			case SDL_QUIT:
+				return 0;
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				std::cout << "Mouse button pressed.\n";
+				break;
+			default:
+				break;
+			}
+		}
+	}
 
 	return 0;
 }
