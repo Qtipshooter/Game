@@ -10,6 +10,7 @@
 #define SDL_MAIN_HANDLED	//Used to avoid SDL taking control of main
 
 #include "Handler.hpp"		//Used to handle the game window and renderer
+#include "definitions.hpp"	//Used for game definitions
 
 // Test Function Prototypes
 int graham_test_main(int argsc, char* argsv[]);
@@ -33,8 +34,20 @@ int main(int argsc, char * argsv[])
 
 int graham_test_main(int argsc, char* argsv[])
 {
-	Handler game("Game", DEFAULT_WINDOW_SIZE, DEFAULT_WINDOW_SIZE);
+	Handler game("Game", GAME_DEFAULT_WINDOW_X, GAME_DEFAULT_WINDOW_Y, false, PINK);
 	SDL_Event* event = new SDL_Event{};
+
+	//Full box
+	//game.drawBox(SDL_Rect{ TEXTBOX_FULL_X, TEXTBOX_FULL_Y, TEXTBOX_FULL_W, TEXTBOX_FULL_H }, TEXBOX_BORDER_SIZE, BLACK, LIGHTBLUE);
+	// 0, 520, 1280, 200
+
+	//Picture box (square)
+	game.drawBox(TEXTBOX_SPLIT_PIC_RECT, TEXBOX_BORDER_SIZE, BLACK, YELLOW);
+	// 0, 520, 200, 200
+
+	//picture textbox
+	game.drawBox(TEXTBOX_SPLIT_TEXT_RECT, TEXBOX_BORDER_SIZE, BLACK, PURPLE);
+	// 200, 520, 1080, 200
 
 	while (true)
 	{
@@ -48,6 +61,15 @@ int graham_test_main(int argsc, char* argsv[])
 			case SDL_MOUSEBUTTONDOWN:
 				std::cout << "Mouse button pressed.\n";
 				break;
+			case SDL_KEYDOWN:
+				switch (event->key.keysym.sym)
+				{
+				case SDLK_ESCAPE:
+					return 0;
+					break;
+				default:
+					break;
+				}
 			default:
 				break;
 			}

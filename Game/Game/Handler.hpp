@@ -13,11 +13,6 @@
 //definitions used for this class
 #define DEFAULT_WINDOW_SIZE 400
 #define DEFAULT_COLOR SDL_Color{0xff, 0xff, 0xff, 0xff}
-#define DEFAULT_FONT_STRING "unispace.ttf"
-
-//Error codes
-#define CANT_OPEN_FONT -1
-#define TTF_NOT_INIT   -2
 
 
 class Handler
@@ -99,18 +94,6 @@ public:
      */
     void drawBox(SDL_Rect rect, unsigned int border_thickness = 4, SDL_Color border_color = SDL_Color{ 0x00, 0x00, 0x00, 0xff },
         SDL_Color background_color = SDL_Color{ 0xff, 0xff, 0xff, 0xff });
-
-    /**DrawTextInRect
-     * draws text from a true type font in a rectangle at a specified text size
-     * @param text - the text to draw
-     * @param dest - the destination rectangle to display the text in
-     * @OPparam size - point size of the text
-     * @OPparam font - the font type chosen for the text
-     * @return - 0 if the font was written properly, a negative error code otherwise.
-     * These error codes TODO will have macros in this header file
-     */
-     //TODO
-    int drawTextInRect(std::string text, SDL_Rect dest, unsigned int font_size = 12, unsigned int buffer_pixels = 4, std::string fontFile = DEFAULT_FONT_STRING);
 
     /* ------ Internal Functiions ------ */
 private:
