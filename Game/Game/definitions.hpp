@@ -1,4 +1,10 @@
-
+// definitions.hpp
+// Quinton Graham
+//
+// This contains basic defines that will be used throughout
+// the entire program in someway or another.  This will make
+// the code look cleaner and make more sense for example with color
+// or sizings.
 
 #ifndef DEFINITIONS_H_
 #define DEFINITIONS_H_
@@ -26,11 +32,29 @@
 
 // Pixel size of one square in roaming mode
 //TODO
+
+//Small tile size definitions 
+//TODO - Complete the centering definitions
+#define TILE_SMALL_SIZE		64
+#define TILE_SMALL_PIXELS	4096
+
+//Large tile size definitions
+//TODO - Complete the centering definitions
+#define TILE_LARGE_SIZE		128
+#define TILE_LARGE_PIXELS	16384
+
 //64 by 64 would be 4096 pixels total, 20 across, 11.25 high.
 //This would be 16384 bytes minimum per square if stored as SDL_Points for each point in a single square.
 //by centering the player on the screen, we would have half a box off each side, and an eighth of a box of the top and bottom.
 //That would be 32 pixels on the side and 8 on the top and bottom.
 //I think that 64 would work best, but will discuss before hand
+
+//revisment, maybe 128 works a bit better.  This makes the number of pixels 16384 per box,
+//meaning 65536 bytes per box if all points are stored as SDL_Points.
+//this method makes there be 10 boxes across and 5.625 (5 and 5/8th) boxes vertically.
+//centering this makes there be half width (64 pixels) boxes on the sides
+//and .3125 (5/16th) (40 pixels) boxes on top and bottom.  This still leaves 9 boxes across
+//and 5 boxes up and down with extra space on all edges
 
 /* ------ Text Dialoug Box definitions (Picture and no Picture) ------ */
 //Default Border size (which is used to determine the other textbox sizes)
@@ -62,6 +86,7 @@
 //Default font
 //Alternate font probably too
 
-// 
+// Errors
+
 
 #endif // !DEFINITIONS_H_
