@@ -63,47 +63,45 @@ int graham_test_main(int argsc, char* argsv[])
 
 	int test_num = -5;
 
-	while (flag)
+	while (flag && SDL_PollEvent(event))
 	{
-		while (SDL_PollEvent(event))
+
+		switch (event->type)
 		{
-			switch (event->type)
+		case SDL_QUIT:
+			flag = false;
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			std::cout << "Mouse button pressed.\n";
+			//Picture box (square)
+			game.drawBox(TEXTBOX_SPLIT_PIC_RECT, TEXBOX_BORDER_SIZE, BLACK, YELLOW);
+			// 0, 520, 200, 200
+
+			//picture textbox
+			game.drawBox(TEXTBOX_SPLIT_TEXT_RECT, TEXBOX_BORDER_SIZE, BLACK, PURPLE);
+			// 200, 520, 1080, 200
+			break;
+		case SDL_KEYDOWN:
+			switch (event->key.keysym.sym)
 			{
-			case SDL_QUIT:
+			case SDLK_ESCAPE:
 				flag = false;
 				break;
-			case SDL_MOUSEBUTTONDOWN:
-				std::cout << "Mouse button pressed.\n";
-				//Picture box (square)
-				game.drawBox(TEXTBOX_SPLIT_PIC_RECT, TEXBOX_BORDER_SIZE, BLACK, YELLOW);
-				// 0, 520, 200, 200
-
-				//picture textbox
-				game.drawBox(TEXTBOX_SPLIT_TEXT_RECT, TEXBOX_BORDER_SIZE, BLACK, PURPLE);
-				// 200, 520, 1080, 200
+			case SDLK_r:
+				SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Error printing", SDL_GetError(), game.window);
 				break;
-			case SDL_KEYDOWN:
-				switch (event->key.keysym.sym)
-				{
-				case SDLK_ESCAPE:
-					flag = false;
-					break;
-				case SDLK_r:
-					SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "Error printing", SDL_GetError(), game.window);
-					break;
-				case SDLK_e:
-					SDL_SetError("Test Error");
-					break;
-				case SDLK_t:
-					SDL_ClearError();
-					break;
-				default:
-					break;
-				}
+			case SDLK_e:
+				SDL_SetError("Test Error");
+				break;
+			case SDLK_t:
+				SDL_ClearError();
+				break;
 			default:
 				break;
 			}
-		}
+		default:
+			break;
+		}	
 	}
 
 	return 0;
