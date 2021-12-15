@@ -52,8 +52,7 @@ int graham_test_main(int argsc, char* argsv[])
 		{
 			int y_offset = j * 128;
 			SDL_Color tile_color;
-			if ((i + j) % 2 == 0) tile_color = WHITE;
-			else tile_color = BLACK;
+			tile_color = ((i + j) % 2 == 0) ? WHITE : BLACK;
 
 			game.drawBox(SDL_Rect{ x_offset, y_offset, 128, 128 }, 0, tile_color, tile_color);
 		}
