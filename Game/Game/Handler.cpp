@@ -53,16 +53,7 @@ Handler::~Handler()
 /* ------ Informative ------ */
 bool Handler::isInsideWindow(int x, int y)
 {
-    if (x < 0 || y < 0)
-    {
-        return false;
-    }
-    if ((unsigned int)x >= window_x || (unsigned int)y >= window_y)
-    {
-        return false;
-    }
-
-    return true;
+    return x<0 || y<0 || (unsigned int)x >= window_x || (unsigned int)y >= window_y ? false : true;
 }
 
 SDL_Point Handler::getPointOfScreenPercentage(double x, double y)
@@ -70,12 +61,10 @@ SDL_Point Handler::getPointOfScreenPercentage(double x, double y)
     int new_x{}, new_y{};
 
     //make sure that x and y percentages are greater than 0
-    if (x < 0) new_x = -1;
-    else new_x = (int)(x / 100) * window_x;
+    new_x = (x < 0) ? -1 : (int)(x / 100) * window_x;
 
     // Otherwise, divide by 100 (convert to percentage), then return the new point
-    if (y < 0) new_y = -1;
-    else new_y = (int) (y / 100) * window_y;
+    new_y = (y < 0) ? -1 : (int) (y / 100) * window_y;
 
     return SDL_Point{ new_x, new_y };
 }
